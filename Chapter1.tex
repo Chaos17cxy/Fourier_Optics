@@ -50,11 +50,11 @@
 $a\times b$矩形范围内，函数值为1，其他地方为0。
     \paragraph{光学上的应用：}表示不透明屏上的矩形孔、\textbf{狭缝的透过率(这一点对后面很重要！)}%加粗
     \paragraph{作用:}它与其他函数相乘，可限制函数自变量的取值范围，起到截取函数的作用
-     \begin{figure}
-      \centering
-      \includegraphics[width=4cm,height=3cm]{rect.eps}
-      \caption{$\rect{a}$图像}
-     \end{figure}%插入图片完整格式
+        \begin{figure}
+        \centering
+        \includegraphics[width=4cm,height=3cm]{rect.eps}
+        \caption{$\rect{a}$图像}
+        \end{figure}%插入图片完整格式
      \subsubsection{$sinc$函数}%sub表示更小的一个分支
 %字体也会更小\
     \paragraph{定义：}$\sinc{a}=\f{\sin{\sfr{\pi(x-x_{0})}{a}}}{\sfr{\pi(x-x_{0})}{a}}$
@@ -265,13 +265,26 @@ F\{tri(x)\}=F\{rect(x)*rect(x)\}
 \[
     2\pi\int_{0}^{1}rJ_{p0}(2\pi\rho r)dr=2\pi\times\int_{0}^{2\pi\rho}\f{r'}{(2\pi\rho)^2}J_{0}(r')dr'
 \\
-=\f{1}{2\pi\rho^2}\int_{0}^{2\pi\rho}r'J_{0}r'dr'=\f{J_{1}(2\pi\rho)}{\rho}
+=\f{1}{2\pi\rho^2}\int_{0}^{2\pi\rho}r'J_{0}(r')dr'=\f{J_{1}(2\pi\rho)}{\rho}
 \]
-6.掌握卷积的图解法
 
-.求两个矩形函数的卷积\\x
+9.掌握卷积的图解法
+
+10.求两个矩形函数的卷积\\
 答案：$rect(x)*rect(x)=tri(x)$,即两个矩形函数的卷积是三角形函数
-.掌握$\delta$函数和另一个函数卷积
+
+11.掌握$\delta$函数和另一个函数卷积\\
+即：$f(x,y)*\delta(x-x_{0},y-y_{0})=f(x-x_{0},y-y_{0})$
+
+12.掌握常见傅里叶变换如图2
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm,height=4cm]{graph.eps}
+    \caption{傅里叶变换表格}
+    \end{figure}    
 \end{document}
 
 

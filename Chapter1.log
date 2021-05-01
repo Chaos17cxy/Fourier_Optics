@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.4.27)  1 MAY 2021 13:28
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.4.27)  1 MAY 2021 15:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -417,16 +417,18 @@ Overfull \hbox (55.42014pt too wide) detected at line 226
  []
 
 [9]
-Overfull \hbox (32.74936pt too wide) detected at line 269
-\OT1/lmr/m/n/10.53937 2\OML/lmm/m/it/10.53937 ^^Y [][] rJ[]\OT1/lmr/m/n/10.53937 (2\OML/lmm/m/it/10.53937 ^^Y^^Zr\OT1/lmr/m/n/10.53937 )\OML/lmm/m/it/10.53937 dr \OT1/lmr/m/n/10.53937 = 2\OML/lmm/m/it/10.53937 ^^Y \OMS/lmsy/m/n/10.53937 ^^B [][] []\OML/lmm/m/it/10.53937 J[]\OT1/lmr/m/n/10.53937 (\OML/lmm/m/it/10.53937 r[]\OT1/lmr/m/n/10.53937 )\OML/lmm/m/it/10.53937 dr[][]  \OT1/lmr/m/n/10.53937 = [] [][] \OML/lmm/m/it/10.53937 r[]J[]r[]dr[] \OT1/lmr/m/n/10.53937 = []
+Overfull \hbox (40.94687pt too wide) detected at line 269
+\OT1/lmr/m/n/10.53937 2\OML/lmm/m/it/10.53937 ^^Y [][] rJ[]\OT1/lmr/m/n/10.53937 (2\OML/lmm/m/it/10.53937 ^^Y^^Zr\OT1/lmr/m/n/10.53937 )\OML/lmm/m/it/10.53937 dr \OT1/lmr/m/n/10.53937 = 2\OML/lmm/m/it/10.53937 ^^Y \OMS/lmsy/m/n/10.53937 ^^B [][] []\OML/lmm/m/it/10.53937 J[]\OT1/lmr/m/n/10.53937 (\OML/lmm/m/it/10.53937 r[]\OT1/lmr/m/n/10.53937 )\OML/lmm/m/it/10.53937 dr[][]  \OT1/lmr/m/n/10.53937 = [] [][] \OML/lmm/m/it/10.53937 r[]J[]\OT1/lmr/m/n/10.53937 (\OML/lmm/m/it/10.53937 r[]\OT1/lmr/m/n/10.53937 )\OML/lmm/m/it/10.53937 dr[] \OT1/lmr/m/n/10.53937 = []
  []
 
+File: graph.eps Graphic file (type eps)
+<graph.eps>
 [10] (./Chapter1.aux) ) 
 Here is how much of TeX's memory you used:
- 8122 strings out of 476919
- 223614 string characters out of 5825424
+ 8126 strings out of 476919
+ 223663 string characters out of 5825424
  550837 words of memory out of 5000000
- 27970 multiletter control sequences out of 15000+600000
+ 27973 multiletter control sequences out of 15000+600000
  471466 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,14n,104p,1192b,365s stack positions out of 5000i,500n,10000p,200000b,80000s
