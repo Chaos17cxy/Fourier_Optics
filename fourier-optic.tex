@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{mathrsfs}
+\usepackage{amsthm,amsmath,amssymb}
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\title{傅里叶光学}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+本人不学无术，上课不认真听，到期中考试，临时抱佛脚，适逢学习\LaTeX，所
+以用\LaTeX整理复习笔记。
+\section{引言}
+\paragraph{}
+傅里叶光学，顾名思义，使用傅里叶变换研究光学问题的一门学科。傅里叶光学
+的一个数学基础是亥姆霍兹方程解的唯一性和线性性质。因为方程是线性的，所
+以可以把边界条件分解成一种简单函数的叠加，分别研究每一种情况，最后利用线性性
+质将不同情况的解进行叠加。这是一种将复杂问题分解成简单问题的一种方法，
+这也是傅里叶变换的思想。而亥姆霍兹方程的唯一性条件保证我们可以猜解，像
+电镜法一样，保证边界条件相同的情况下对亥姆霍兹方程给一个实际情况，利用
+这一实际情况简化求解，这点十分重要，我们在下面章节中可以看见。
+\section{角谱理论}
+\subsection{角谱}
+\paragraph{}
+角谱就是将单色光场傅里叶变换的结果。在这里我们只研究单色光，
+实际光场可以看成是单色光的叠加，用到的数学工具也是傅里叶变换，保证这一
+过程有效的同样也是亥姆霍兹方程的线性和解的唯一性。众所周知，在光的传播中，遇
+到的衍射孔径大于光波长的几倍在不太靠近孔径，光波的矢量性是不明显的，虽
+然光的$\vec{E}$和$\vec{B}$是矢量，但是实验证明，这时候可以看成是一个复
+数的标量形式。即：\[U_0(x,y,z)=A\exp{i\varphi}\] $U_0$代表改点的光的矢
+量，$A$代表光的强度的平方根$\varpi$代表相位。而傅里叶变化是将这这一个
+写成以下形式：
+\[U_0=\int\limits_{-\infty}^{\infty}A(\eta,\xi,\zeta)e^{2\pi i(\eta
+    x_0+\xi y_0+\zeta z_0)}\dif x_0 \dif
+  y_0 \dif z_0\]我们研究光学问题，一个比较关心的问题在$z$给定情况下
+$x$和$y$与光场的关系，在这一限制中，光的标量$U_0$可以由一个三自变量的函数
+$U_0(x,y,z)$化为两个自变量$U_0(x,y)$，因为自变量$z$可以看成是一个条件，
+我们关心的是在与$z$轴垂直的平面的光场分布。这时角谱可以简化为
+$A(\eta,\xi)$。
+\paragraph{}
+$\eta$和$\xi$称为空间频率，它的物理意义马上就可以看到。首先将傅里叶变
+换写成求和的形式，或者说是傅里叶级数的形式，在数学上这是由积分变成求和。
+\begin{equation}
+  \label{eq:1}
+  U_0=\sum_{\eta \xi}A(\eta,\xi)e^{2\pi i(\eta x_0+\xi y_0)}
+\end{equation}
+$e^{2\pi i(\eta x_0+\xi y_0)}$代表了一束波矢为$(2\pi\eta,2\pi\xi)$的平
+面波。对于这一点，可以通过对比平面波的公式得出。这种角谱将平面光场分解
+为一系列平面波。对于空间中传播的波，可以分解为单色波，对于每个单色波来
+说，存在$\zeta$满足条件\[\eta^2+\xi^2+\zeta^{2}=\frac{1}{\lambda^2}\],
+即$2\pi(\eta,\xi,\zeta)$可以作为空间中的波长为$\lambda$的光波的波矢的在$x$、
+$y$、$z$的三个方向的分解，这样的平面波公式自然是$e^{2\pi
+  i(\eta,\xi,\zeta)\cdot(x_0,y_0,z_0)}$,在$xy$平面上的光场分布自然是回
+归到了\ref{eq:1}的情形。
+\subsection{角谱的传播}
+众所周知，光在沿$z$轴传播过程中，$xy$平面上的光场分布会发生变化，所以
+在传播过程中，角谱也会随$z$发生变化。在这里我们仅考虑单色波。光传播过
+程满足亥姆霍兹方程$\nabla^2U+k^2U=0$（关于这一部分详见附录）。对于一
+个给定的平面光场，无论他如何产生的，我们可以把他看作为一系列产生平面光
+的光源产生的结果而不会引发任何问题，这一点类似于电镜法，电镜法将电场在
+满足边界条件的情况下进行假想一个产生这一条件的电场源，由这个电场源求出
+的电场不会有问题，这里也一样。由于亥姆霍兹方程的线性性质，我们可以将
+$U_0$的每一束平面光分别研究，总光场分布的结果一定是这些单独结果的叠加，
+单色光叠加成实际光源和实际光源分解同样是如此的。
+\paragraph{}
+对于单个平面波传播方程为：\[U=Ae^{2\pi i(\eta x+\xi y+\zeta z)}\]其中，
+$A$为$\eta$、$\xi$、$z$的函数，代表的就是角谱，将这一方程带入亥姆霍兹方程可
+以得到\[(\nabla^2+k^2)U=0\]，展开得\[\frac{\dif^2A}{\dif
+    z^2}+A(k^2-4\pi^{2}\eta^2-4\pi^2\xi^2)=0\]显然，方程的解为:
+\begin{equation}
+  \label{eq:2}
+  A=Ce^{iz \sqrt{k^2-4\pi^2\eta^2-4\pi^2\xi^2}}
+\end{equation}
+$C$为和初值有关的常数，现在我们假设初始的光场角谱为$A_0$,则$C$可以简单
+地取为$A_0$,$A_0$与只$\eta$、$\xi$有关，所以在传播$z$的距离后角谱变成
+了
+\begin{equation}
+  \label{eq:3}
+  A_z=A_0e^{iz \sqrt{k^2-4\pi^2\eta^2-4\pi^2\xi^2}}
+\end{equation}
+这就是角谱的传播规律。
+\paragraph{}
+由这也可以看出，当$k^2<4\pi^{2}(\eta^2+\xi^2)$时，开根会引入虚数，造成角谱传播过
+程中的衰减，空间频率足够高的平面波将会消失掉。在这里做一个近似，将
+$k^2<4\pi^2(\eta^2+\xi^2)$的地方角谱将近似为0,并定义：
+\begin{equation}
+  \label{eq:4}
+  H(\eta,\xi)=\left \{
+    \begin{array}{rcl}
+      e^{iz \sqrt{k^2-4\pi^2\eta^2-4\pi^2\xi^2}}&&{k^2>4\pi^2(\eta^2+\xi^2)}\\
+      0&&{}
+    \end{array}
+  \right
+  .
+\end{equation}
+$H(\eta,\xi)$称为该系统的传递函数。
+在旁轴近似下，即：
+\[k^2>>\eta^2+\xi^2\]这时，将传递函数$H(\eta,\xi)$的指数项做近似
+\[iz \sqrt{k^2-4\pi^2\eta^2-4\pi^2\xi^2}\Rightarrow izk
+  \sqrt{1-4\pi^2\frac{\eta^2+\xi^2}{k^{2}}}\Rightarrow
+  izk(1-2\pi^2\frac{\eta^2+\xi^2}{k^{2}})\]
+最终得到传递函数可以近似为:
+\begin{equation}
+  \label{eq:5}
+  H(\eta,\xi)=e^{izk}e^{-iz\pi\lambda(\eta^2+\xi^2)}
+\end{equation}
+\subsection{泰伯效应}
+在傍轴近似下，如果入射光场为周期性光场，光场会出现随$z$变化的周期性的
+重复，这一现象叫做泰伯效应。
+将初始为周期性光场，将初始的光场进行傅里叶展开：
+\[U_0=\sum_{-\infty}^{+\infty}c_{n,m}e^{2\pi i(\frac{nx}{d_1}+\frac{my}{d_2})} \]
+求初始光强的角谱：
+\[A_0=\mathscr{F}[\sum_{-\infty}^{+\infty}c_ne^{2\pi
+    i(\frac{nx}{d_1}+\frac{my}{d_2})}]=\sum_{-\infty}^{+\infty}c_{n,m}\mathscr{F}[e^{2\pi
+    i(\frac{nx}{d_1}+\frac{my}{d_2})}]\]
+指数函数的傅里叶变换的结果是$\delta$函数，所以角谱可以写成：
+\[A_0=\sum_{-\infty}^{+\infty}c_{n,m}\delta(\eta-\frac{n}{d_1},\xi-\frac{m}{d_2})\]
+传播距离$z$之后，角谱变成：
+\[A=A_0H=e^{ikz}\sum_{-\infty}^{+\infty}c_{n,m}e^{-i\pi\lambda
+    z(\eta^2+\xi^2)}\delta(\eta-\frac{n}{d_1},\xi-\frac{m}{d_2})\]
+\[\Rightarrow e^{ikz}\sum_{-\infty}^{+\infty}c_{n,m}e^{-i\pi\lambda
+    z(\frac{n^2}{d_1^2}+\frac{m^2}{d_2^2})}\delta(\eta-\frac{n}{d_1},\xi-\frac{m}{d_2})\]
+
+对于任意的$z$处角谱和$z+\frac{2d_1^2d_2^2}{\lambda}$处角谱只差一个常数
+$e^{ik \frac{2d_1^2d_2^2}{\lambda}}$，这一点可以直接将这两个值带入验证，
+这个常数是一个模为1的复数并不影响光场分布，只是对相位产生影响，所以入
+射光场是周期函数，光场会随$z$而周期性发生变化。
+
+\section{菲涅尔衍射}
+上一章我们介绍了角谱理论，现在我们要将这一理论应用到菲涅尔衍射之中。
+\subsection{菲涅尔衍射}
+
+现在假设傍轴近似，将\ref{eq:5}带入到角谱的传播规律\ref{eq:3}
+中\[A=A_0e^{izk}e^{-iz\pi\lambda(\eta^2+\xi^2)}\]傅里叶反变换可以得到空
+间中的光场分布
+\[U=\mathscr{F}^{-1}[A_0e^{izk}e^{-iz\pi\lambda(\eta^{2}+\xi^2)}]=\mathscr{F}^{-1}[A_0]*\mathscr{F}^{-1}[e^{ikz}e^{-iz\pi\lambda(\eta^2+\xi^2)}]\]
+带入$A_0$定义可得：
+\[\mathscr{F}^{-1}[A_0]=U_0\]
+\[
+  \mathscr{F}^{-1}[e^{ikz}e^{-iz\pi\lambda(\eta^2+\xi^2)}]=e^{ikz}\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}e^{-iz\pi\lambda(\eta^2+\xi^2)}e^{2\pi
+    i(\eta x+\xi y)}\dif\eta\dif\xi\]
+\[\Rightarrow
+  e^{ikz}\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}e^{iz\pi\lambda((\eta-\frac{x}{z\lambda})^2+(\xi-\frac{y}{z\lambda})^2)}e^{i\pi
+    \frac{x^2+y^2}{z\lambda}}\dif\eta\dif\xi\]
+\[\Rightarrow e^{ikz}e^{i\pi
+    \frac{x^2+y^2}{z\lambda}}\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}e^{iz\pi\lambda((\eta-\frac{x}{z\lambda})^2+(\xi-\frac{y}{z\lambda})^2)}\dif\eta\dif\xi\]
+\[\Rightarrow \frac{1}{iz\lambda}e^{ikz}e^{i\pi \frac{x^2+y^2}{z\lambda}}\]
+将两式做卷积：
+\[U(x,y)=\frac{1}{iz\lambda}e^{ikz}\int\limits_{-\infty}^{+\infty}U_0(x_0,y_0)e^{i\pi
+    \frac{(x-x_0)^2+(y-y_0)^2}{z\lambda}}\dif x_0\dif y_0\]
+\[\Rightarrow \frac{1}{iz\lambda}e^{ikz}e^{ik
+    \frac{x^2+y^2}{2z}}\int\limits_{-\infty}^{+\infty}U_0(x_0,y_0)e^{ik
+    \frac{x_0^2+y_0^2}{2z}}e^{-ik \frac{xx_0+yy_0}{z}}\dif x_0\dif
+  y_0\]
+\[\Rightarrow \frac{1}{iz\lambda}e^{ikz}e^{ik
+    \frac{x^2+y^2}{2z}}\mathscr{F}[U_0e^{ik
+    \frac{x_0^2+y_0^2}{2z}}]|_{\eta=\frac{x}{z\lambda},\xi=\frac{y}{z\lambda}}\]
+于是菲涅尔衍射的公式应该为：
+\begin{equation}
+  \label{eq:6}
+  U=\frac{1}{ikz}e^{izk}e^{ik \frac{x^2+y^2}{2z}}\mathscr{F}[U_0e^{ik \frac{x_0^2+y_0^2}{2z}}]|_{\eta=\frac{x}{z\lambda},\xi=\frac{y}{z\lambda}}
+\end{equation}
+\subsection{夫琅和费衍射}
+当$z$足够的大且孔径足够的小的时候，也就是说，衍射屏可以近似足够远的时
+候，满足条件：
+\[z>>k(x_0^2+y_0^2)_{max}\]
+这时候，光场分布可以简化为：
+\[U=\frac{1}{iz\lambda}e^{jk
+    \frac{x^2+y^2}{2z}}e^{ikz}\mathscr{F}[U_0]|_{\eta=\frac{x}{z\lambda},\xi=\frac{y}{z\lambda}}\]
+光强分布为：
+\begin{equation}
+  \label{eq:7}
+  I=U^{*}U=\frac{1}{z^2\lambda^2}|\mathscr{F}[U_0]|^2=\frac{1}{z^2\lambda^2}|A_0(\frac{x}{z\lambda},\frac{y}{z\lambda})|^2
+\end{equation}
+\subsection{衍射初始角谱}
+衍射是光通过障碍物之后发生的现象，前面章节中讨论了衍射的光场分布，这一
+节之中讨论衍射的初始角谱。
+\paragraph{}
+初始的角谱并不能够直接通过障碍物之前的光场求得，因为障碍物本身就会影响
+角谱，例如平行于$z$轴的一个平面光照射到一个衍射的小孔上，平面光的角谱
+是一个$\delta$函数，但是通过小孔之后的角谱一定不是一个$\delta$函数，因
+为一个小孔的透光无论如何也是不能够由一个平面光产生的。
+\paragraph{}
+一般来说，障碍物对光场的影响可以写成以下形式：
+\[U_i\tau=U_0 \]
+$U_i$代表障碍物前的光场。上式定义了函数$\tau$,$\tau$表示障碍物对光强的
+影响，是个复数，既有强度的影响又有相位的影响。一般来说，$\tau$与障碍物
+的性质有关，障碍物对光的吸收对相位的影响反映到$\tau$上。将上式做傅里叶
+变换：
+\[A_i*T=A_0\]
+$A_0$等于入射角谱和$T(\eta,\xi)$的卷积。将$T(\eta,\xi)$称为物体的频谱。
+\subsection{巴比涅原理}
+
+\subsection{单缝衍射}
+如果是一束平行于$z$轴的平面光照射到一个矩形孔，这时
+$A_i=\delta(\eta,\xi)$,而
+$\tau=rect(\frac{x_0}{a})rect(\frac{y_0}{b})$,其中函数$rect$的定义如下：
+\[
+  rect(\frac{x}{a})=\left \{
+    \begin{array}{rcl}
+      1 && |\frac{x}{a}|\leq \frac{1}{2}\\
+      0 && {}
+    \end{array}
+  \right
+  .
+\]
+$\tau$进行傅里叶变换的到$T$
+\[T(\eta,\xi)=\mathscr{F}[\tau]=\mathscr{F}[rect(\frac{x_0}{a})]\mathscr{F}[rect(\frac{y_0}{b})]=ab\mathop{}\!sinc(a\eta)sinc(b\xi)\]
+$sinc$函数定义为：
+\[sinc(x)=\frac{sin(x)}{x}\]
+将函数$rect$带入傅里叶变化的公式容易得，$rect$的傅里叶变换的结果是
+$sinc$函数。
+\[A_0(\eta,\xi)=A_i*T=\int\limits_{-\infty}^{+\infty}ab\delta(\eta-\eta_0,\xi-\xi_0)sinc(a\eta_0)sinc(b\eta)\dif\eta_0\dif\xi_0\]
+\[\Rightarrow ab \mathop{}\!sinc(a\eta)sinc(b\xi)\]
+矩形孔径让光的空间频率展宽，也就是说，平行光经过孔径后发生了偏离原有传
+播方向--原来是直线传播--的情况发生，这就是平常说的衍射。设初始光强为$I_0$考察矩形孔径的
+夫琅和费衍射的光强分布为:
+\[I=\frac{I_0}{z^2\lambda^2}|T(\frac{x}{z\lambda},\frac{y}{z\lambda})|^2\]
+\[\Rightarrow I=\frac{I_0}{z^2\lambda^2}sinc(\frac{x}{z\lambda})sinc(\frac{y}{z\lambda})\]
+当这个孔径是只有一维有限制的情况下上式可以简化为单缝衍射公式。
+\subsection{双缝衍射}
+\subsection{圆孔衍射}
+\subsection{光栅}
+\subsubsection{理想光栅}
+\subsubsection{实际光栅}
+\subsubsection{余弦光栅}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

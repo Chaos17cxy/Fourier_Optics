@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage{float}
+<<<<<<< HEAD
 \usepackage{pgfplots}
 \usepackage{ctex}
 \usepackage{amsmath}
@@ -10,6 +11,13 @@
 \usepackage{xfrac}%\sfrac可以
 \usepackage{fancyhdr}
 \pgfplotsset{compat=1.17}
+=======
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{xfrac}%\sfrac可以
+\usepackage{fancyhdr}
+>>>>>>> e4f7cabd27c4a513469158f610b09335000e40c0
 \ctexset{today=old}
 \setlength{\headheight}{12.64723pt}%标题大小
 \pagenumbering{arabic}
@@ -32,7 +40,11 @@
 \newcommand{\f}[2]{\frac{#1}{#2}}%定义分数函数 更方便了
 \newcommand{\sfr}[2]{\sfrac{#1}{#2}}
 \newcommand{\sumsum}[3]{\sum_{#1=#2}^#3}
+<<<<<<< HEAD
 \newcommand{\dbinf}{\iint_{-\infty}^{\infty}}
+=======
+
+>>>>>>> e4f7cabd27c4a513469158f610b09335000e40c0
 \date{\today}
 \begin{document}
 本人鄂西南吴彦祖，尝学\LaTeX，然纸上得来终觉浅，适逢信息光学此公式繁杂之课业，练手之作，还望诸位海涵。
@@ -53,11 +65,19 @@
 $a\times b$矩形范围内，函数值为1，其他地方为0。
     \paragraph{光学上的应用：}表示不透明屏上的矩形孔、\textbf{狭缝的透过率(这一点对后面很重要！)}%加粗
     \paragraph{作用:}它与其他函数相乘，可限制函数自变量的取值范围，起到截取函数的作用
+<<<<<<< HEAD
      \begin{figure}
       \centering
       \includegraphics[width=4cm,height=3cm]{rect.eps}
       \caption{$\rect{a}$图像}
      \end{figure}%插入图片完整格式
+=======
+        \begin{figure}
+        \centering
+        \includegraphics[width=4cm,height=3cm]{rect.eps}
+        \caption{$\rect{a}$图像}
+        \end{figure}%插入图片完整格式
+>>>>>>> e4f7cabd27c4a513469158f610b09335000e40c0
      \subsubsection{$sinc$函数}%sub表示更小的一个分支
 %字体也会更小\
     \paragraph{定义：}$\sinc{a}=\f{\sin{\sfr{\pi(x-x_{0})}{a}}}{\sfr{\pi(x-x_{0})}{a}}$
@@ -208,6 +228,7 @@ $h(x,y)$可以看作系统(光学中可以认为是光学透镜组)
 \[
   G(\rho,\varphi)=\int_{0}{\infty}rg(r)\{\int_{0}{2\pi}e^{-j2\pi\rho rcos(\theta-\varphi)}d\theta\}dr
   \]
+<<<<<<< HEAD
   贝塞尔函数关系式：$\int_{0}^{2\pi}e^{-jacos(\theta-\varphi)}d\theta=2\pi J_{0}(a)$
 $g(r,\theta)$具有圆域对称性，可以写作$g(r)$
 \paragraph{傅里叶-贝塞尔变换与逆变换}
@@ -216,6 +237,16 @@ $g(r,\theta)$具有圆域对称性，可以写作$g(r)$
     \]
 \[
     g(r)=2\pi\int_{0}^{2\pi}rG(\rho)J_{0}(2\pi\rho r)d\rho
+=======
+  贝塞尔函数关系式：$\int_{0}{2\pi}e^{-jacos(\theta-\varphi)}d\theta=2\pi J_{0}(a)$
+$g(r,\theta)$具有圆域对称性，可以写作$g(r)$
+\paragraph{傅里叶-贝塞尔变换与逆变换}
+\[
+    G(\rho)=2\pi\int_{0}{2\pi}rg(r)J_{0}(2\pi\rho r)dr
+    \]
+\[
+    g(r)=2\pi\int_{0}{2\pi}rG(\rho)J_{0}(2\pi\rho r)d\rho
+>>>>>>> e4f7cabd27c4a513469158f610b09335000e40c0
     \]
 \paragraph{光学应用}研究圆孔衍射   
 
@@ -268,11 +299,16 @@ F\{tri(x)\}=F\{rect(x)*rect(x)\}
 \[
     2\pi\int_{0}^{1}rJ_{p0}(2\pi\rho r)dr=2\pi\times\int_{0}^{2\pi\rho}\f{r'}{(2\pi\rho)^2}J_{0}(r')dr'
 \\
+<<<<<<< HEAD
 =\f{1}{2\pi\rho^2}\int_{0}^{2\pi\rho}r'J_{0}r'dr'=\f{J_{1}(2\pi\rho)}{\rho}
+=======
+=\f{1}{2\pi\rho^2}\int_{0}^{2\pi\rho}r'J_{0}(r')dr'=\f{J_{1}(2\pi\rho)}{\rho}
+>>>>>>> e4f7cabd27c4a513469158f610b09335000e40c0
 \]
 
 9.掌握卷积的图解法
 
+<<<<<<< HEAD
 10.求两个矩形函数的卷积\\x
 答案：$rect(x)*rect(x)=tri(x)$,即两个矩形函数的卷积是三角形函数
 
@@ -369,3 +405,23 @@ G(\xi,\eta)=F(\xi,\eta)H(\xi,\eta)
     \]
 其中$F(\xi,\eta)d\xi d\eta$是基元函数的权重因子
 \end{document}
+=======
+10.求两个矩形函数的卷积\\
+答案：$rect(x)*rect(x)=tri(x)$,即两个矩形函数的卷积是三角形函数
+
+11.掌握$\delta$函数和另一个函数卷积\\
+即：$f(x,y)*\delta(x-x_{0},y-y_{0})=f(x-x_{0},y-y_{0})$
+
+12.掌握常见傅里叶变换如图2
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm,height=4cm]{graph.eps}
+    \caption{傅里叶变换表格}
+    \end{figure}    
+\end{document}
+
+
+>>>>>>> e4f7cabd27c4a513469158f610b09335000e40c0
