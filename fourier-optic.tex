@@ -2,10 +2,13 @@
 \usepackage{ctex}
 \usepackage{mathrsfs}
 \usepackage{amsthm,amsmath,amssymb}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\rect}{rect}
+\DeclareMathOperator{\cir}{circ}
 \usepackage[T1]{fontenc}
-
 \usepackage[marginal]{footmisc}
 \usepackage[OT2,T1]{fontenc}
+\usepackage{esint}
 \DeclareSymbolFont{cyrletters}{OT2}{wncyr}{m}{n}
 \DeclareMathSymbol{\Sha}{\mathalpha}{cyrletters}{"58}
 \newcommand*{\dif}{\mathop{}\!\mathrm{d}}
@@ -165,13 +168,13 @@ $e^{ik \frac{2d_1^2d_2^2}{\lambda}}$，这一点可以直接将这两个值带�
 带入$A_0$定义可得：
 \[\mathscr{F}^{-1}[A_0]=U_0\]
 \[
-  \mathscr{F}^{-1}[e^{ikz}e^{-iz\pi\lambda(\eta^2+\xi^2)}]=e^{ikz}\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}e^{-iz\pi\lambda(\eta^2+\xi^2)}e^{2\pi
+  \mathscr{F}^{-1}[e^{ikz}e^{-iz\pi\lambda(\eta^2+\xi^2)}]=e^{ikz}\iint_{-\infty}^{+\infty}e^{-iz\pi\lambda(\eta^2+\xi^2)}e^{2\pi
     i(\eta x+\xi y)}\dif\eta\dif\xi\]
 \[\Rightarrow
-  e^{ikz}\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}e^{iz\pi\lambda((\eta-\frac{x}{z\lambda})^2+(\xi-\frac{y}{z\lambda})^2)}e^{i\pi
+  e^{ikz}\iint_{-\infty}^{+\infty}e^{iz\pi\lambda((\eta-\frac{x}{z\lambda})^2+(\xi-\frac{y}{z\lambda})^2)}e^{i\pi
     \frac{x^2+y^2}{z\lambda}}\dif\eta\dif\xi\]
 \[\Rightarrow e^{ikz}e^{i\pi
-    \frac{x^2+y^2}{z\lambda}}\int\limits_{-\infty}^{+\infty}\int\limits_{-\infty}^{+\infty}e^{iz\pi\lambda((\eta-\frac{x}{z\lambda})^2+(\xi-\frac{y}{z\lambda})^2)}\dif\eta\dif\xi\]
+    \frac{x^2+y^2}{z\lambda}}\iint_{-\infty}^{+\infty}e^{iz\pi\lambda((\eta-\frac{x}{z\lambda})^2+(\xi-\frac{y}{z\lambda})^2)}\dif\eta\dif\xi\]
 \[\Rightarrow \frac{1}{iz\lambda}e^{ikz}e^{i\pi \frac{x^2+y^2}{z\lambda}}\]
 将两式做卷积：
 \[U(x,y)=\frac{1}{iz\lambda}e^{ikz}\int\limits_{-\infty}^{+\infty}U_0(x_0,y_0)e^{i\pi
@@ -186,7 +189,7 @@ $e^{ik \frac{2d_1^2d_2^2}{\lambda}}$，这一点可以直接将这两个值带�
 于是菲涅尔衍射的公式应该为：
 \begin{equation}
   \label{eq:6}
-  U=\frac{1}{ikz}e^{izk}e^{ik \frac{x^2+y^2}{2z}}\mathscr{F}[U_0e^{ik \frac{x_0^2+y_0^2}{2z}}]|_{\eta=\frac{x}{z\lambda},\xi=\frac{y}{z\lambda}}
+  U=\frac{1}{iz\lambda}e^{izk}e^{ik \frac{x^2+y^2}{2z}}\mathscr{F}[U_0e^{ik \frac{x_0^2+y_0^2}{2z}}]|_{\eta=\frac{x}{z\lambda},\xi=\frac{y}{z\lambda}}
 \end{equation}
 \subsection{夫琅和费衍射}
 当$z$足够的大且孔径足够的小的时候，也就是说，衍射屏可以近似足够远的时
@@ -247,7 +250,7 @@ $\tau=rect(\frac{x_0}{a})rect(\frac{y_0}{b})$,其中函数$rect$的定义如下�
 $\tau$进行傅里叶变换的到$T$
 \[T(\eta,\xi)=\mathscr{F}[\tau]=\mathscr{F}[rect(\frac{x_0}{a})]\mathscr{F}[rect(\frac{y_0}{b})]=ab\mathop{}\!sinc(a\eta)sinc(b\xi)\]
 $sinc$函数定义为：
-\[sinc(x)=\frac{sin(\pi x)}{\pi x}\]
+\[sinc(x)=\frac{\sin(\pi x)}{\pi x}\]
 将函数$rect$带入傅里叶变化的公式容易得，$rect$的傅里叶变换的结果是
 $sinc$函数。
 \[A_0(\eta,\xi)=A_i*T=\int\limits_{-\infty}^{+\infty}ab\delta(\eta-\eta_0,\xi-\xi_0)sinc(a\eta_0)sinc(b\eta)\dif\eta_0\dif\xi_0\]
@@ -295,7 +298,7 @@ $\tau_1$和$\tau_2$分别是一个有位移的单缝衍射，根据巴菲涅原�
 \subsection{圆孔衍射}
 如果入射的孔径是一个圆孔，即：
 \[
-  \tau=cicr(\frac{r}{a})=\left \{
+  \tau=\cir(\frac{r}{a})=\left \{
     \begin{array}{rcl}
       1&&x^2+y^2\leq a^2\\
       0&&{}
@@ -308,18 +311,18 @@ $\tau_1$和$\tau_2$分别是一个有位移的单缝衍射，根据巴菲涅原�
   这里将坐标换成极坐标：
   \[x=r\cos{\theta},y=r\sin{\theta}\]
   \[\eta=\rho\cos{\phi},\xi=\rho\sin{\phi}\]}：
-\[\mathscr{F}[\tau]=\int\limits_{-\infty}^{+\infty}cicr(\frac{r}{a})e^{2\pi
+\[\mathscr{F}[\tau]=\int\limits_{-\infty}^{+\infty}\cir(\frac{r}{a})e^{2\pi
     ir\rho(\cos{\theta}\cos{\phi}+\sin{\theta}\sin{\phi})}r\dif
   r\dif\theta\]
 这里，$cicr$是一个与$\theta$无关的一个函数，可以先对$\theta$进行积分：
-\[\mathscr{F}[\tau]=\int\limits_{-\infty}^{+\infty}cicr(\frac{r}{a})r\dif
+\[\mathscr{F}[\tau]=\int\limits_{-\infty}^{+\infty}\cir(\frac{r}{a})r\dif
   r \int\limits_{0}^{2\pi}e^{-2\pi i
     r\rho(\cos{\theta}\cos{\phi}+\sin{\theta}\sin{\phi})}\dif\theta\]
 积分后面一项是一类特殊函数贝塞尔函数：
 \[J_0(2\pi r\rho)=\frac{1}{2\pi}\int\limits_{0}^{2\pi}e^{-2\pi i
     r\rho\cos(\theta-\phi)}\dif \theta\]
 于是整个积分可以变为：
-\[2\pi\int\limits_{0}^{+\infty} cicr(\frac{r}{a})J_0(2\pi
+\[2\pi\int\limits_{0}^{+\infty} \cir(\frac{r}{a})J_0(2\pi
   r\rho)r\dif r\]
 事实上，对于任意的与$\theta$无关的函数$g_r(r)$均可以照此思路化简：
 \begin{equation}
@@ -356,21 +359,27 @@ $\theta$为爱里斑中心对圆孔的夹角，这称为仪器的最小分辨角
 \paragraph{}
 对于菲涅尔衍射，可以求出它在$z$轴上的光场分布。取零点$(0,0)$,这时带入
 \ref{eq:6}可以得：
-\[U=\frac{1}{ikz}e^{izk}\mathscr{F}[U_0e^{ik \frac{x_0^2+y_0^2}{2z}}]\]
+\[U=\frac{1}{ik\lambda}e^{izk}\mathscr{F}[U_0e^{ik \frac{x_0^2+y_0^2}{2z}}]\]
 其中
 \[\mathscr{F}[U_0e^{ik
-    \frac{x_0^2+y_0^2}{2z}}]=\int\limits_{-\infty}^{+\infty}circ(\frac{r}{a})e^{ik
+    \frac{x_0^2+y_0^2}{2z}}]=\int\limits_{-\infty}^{+\infty}\cir(\frac{r}{a})e^{ik
     \frac{x_0^2+y_0^2}{2z}}\dif x_0\dif y_0\]
 由于在零点处，傅里叶变换中的$e^{2\pi i(\eta x_0+\xi y_0)}$的一项值为1，
 这时候有简单的积分形式。进一步推导可得：
 \[\Rightarrow 2\pi\int\limits_0^ae^{ik \frac{r^2}{2z}}r\dif r\]
 所以光场的表达式可以写成:
-\[U=-e^{ikz}(e^{i \frac{ka^2}{2z\lambda}}-1)\]
+\[U=-e^{ikz}(e^{i \frac{k a^2}{2z}}-1)\]
 光强为:
-\[I=2-e^{i \frac{ka^2}{z\lambda}}-e^{i
-    \frac{ka^2}{z\lambda}}=4\sin^2(\frac{\pi a^2}{2z\lambda})\]
+\[I=2-e^{-i \frac{\pi a^2}{z\lambda}}-e^{i
+    \frac{\pi a^2}{z\lambda}}=4\sin^2(\frac{\pi a^2}{2z\lambda})\]
 这个结果也和直观上一致，当距离变远，光强会随着距离以$\frac{1}{z^2}$的
 形式变化，而这正是能量随着距离散开的速度。
+\paragraph{}
+如果是一个半径为$a$不透光圆盘发生衍射，它的透过率和圆孔衍射正好互补，
+利用巴比涅原理可以求出它的光场的表达式，计算出光强为:
+\[I=1+4\sin^2(\frac{\pi a^2}{2z\lambda})-4\sin(\frac{\pi
+    a^2}{2z\lambda})\sin(kz+\frac{\pi a^2}{2z\lambda})\]
+这时可以看出，当$z$比较大的时候，原点的光强会接近于$1$，这就是泊松亮斑。
 \subsection{光栅}
 \subsubsection{理想光栅}
 $\tau$具有周期性，则称这种结构为光栅。
@@ -382,7 +391,7 @@ $\tau$具有周期性，则称这种结构为光栅。
 \[c_{n,m}=\frac{1}{d_1d_2}\int\limits_0^{d_1}\int\limits_0^{d_2}\tau(x,y)e^{-2\pi
     i(\frac{n}{d_1}x+\frac{m}{d_2}y)}\dif x\dif y\]
 令函数$\tau_0$定义如下：
-\[\tau_0=\tau rect(\frac{x}{d_1})rect(\frac{y}{d_2})\]
+\[\tau_0=\tau\rect(\frac{x}{d_1})\rect(\frac{y}{d_2})\]
 可以看出，这是将$\tau$的一个周期取出的结果。
 \[d_1d_2c_{n,m}=\int\limits_{-\frac{d_1}{2}}^{\frac{d_1}{2}}\int\limits_{-\frac{d_2}{2}}^{\frac{d_2}{2}}\tau
   e^{-2\pi i(\frac{n}{d_1}x+\frac{m}{d_2}y)}\dif
@@ -416,7 +425,7 @@ $\Sha$为周期函数，将这一函数进行傅里叶展开,它的系数为：
 大值，但是前一项的零点和后一项的极值重合的现象叫做衍射缺级。
 如果$\tau_0=rect(\frac{x}{a})$的一维光栅就是我们熟悉的线光栅。带入上节的公
 式可以得到它的光强的表达式为：
-\[I=a^2sinc^2(a
+\[I=a^2\sinc^2(a
   \frac{x}{z\lambda})|\Sha_{\frac{1}{d_1}\frac{1}{d_2}}(\frac{x}{z\lambda},\frac{y}{z\lambda})|^2\]
 式中第一项表示的是$\tau_0$带来的影响，后一项是周期性结构带来的一项。在
 理想光栅中，由周期型结构引起的是条纹宽度为零的一系列周期条纹。
@@ -442,29 +451,29 @@ $\Sha$为周期函数，将这一函数进行傅里叶展开,它的系数为：
 式中求和的每一项分别代表了不同位置的周期性结构的影响。实际光栅的光强为：
 \[I=\frac{1}{z^2\lambda^2}\frac{1}{d_1d_2}(\sum_{-\infty}^{+\infty}T_1(\eta-\frac{n}{d_1},\xi-\frac{m}{d_2})T_0(\eta,\xi))^2\]
 现在我们假设光栅为线光栅狭缝大小为$a$间距为$d$，限制的$\tau_1$取为：
-\[\tau_1=rect(\frac{x_0}{L})rect(\frac{y_0}{L})\]
+\[\tau_1=\rect(\frac{x_0}{L})\rect(\frac{y_0}{L})\]
 这时光栅频谱可以化成：
-\[T'=\frac{aL^2}{d}\sum_{-\infty}^{+\infty}sinc(\frac{an}{d})sinc(L(\eta-\frac{n}{d}))sinc(L\xi)\]
+\[T'=\frac{aL^2}{d}\sum_{-\infty}^{+\infty}\sinc(\frac{an}{d})\sinc(L(\eta-\frac{n}{d}))\sinc(L\xi)\]
 假设光栅的间距足够的大，达到不同的狭缝的爱里斑不会重叠，这时可以近似的
 认为狭缝的光全部集中到爱里斑内，不同狭缝的光不会重叠，这时候光强中的最
 后一项对无穷级数求和的然后平方的这一项可以忽略交叉项，因为这个求和中的
 不同项是代表不同的狭缝的影响，交叉项代表着两个狭缝相互影响，这是后这个
 可以忽略。这时候的光强化为：
-\[I=\frac{a^2L^4}{z^2d^2\lambda^2}\sum_{-\infty}^{+\infty}sinc^2(\frac{an}{d})sinc^2(L(\frac{x}{z\lambda}-\frac{n}{d}))sinc^2(L
+\[I=\frac{a^2L^4}{z^2d^2\lambda^2}\sum_{-\infty}^{+\infty}\sinc^2(\frac{an}{d})\sinc^2(L(\frac{x}{z\lambda}-\frac{n}{d}))\sinc^2(L
   \frac{Ly}{z\lambda})\]
 在$\frac{x}{z\lambda}-\frac{n}{d}$位置取最大值，并在傍轴近似条件下取得
 $\sin{\theta}=\frac{x}{z}$得到光栅方程为：
 \[d\sin{\theta}=n\lambda\]
 如果光栅的透过率是以余弦形式变化的，光栅就变成了余弦光栅。
 令：
-\[\tau=\frac{1}{2}+\frac{m}{2}\cos(2\pi \frac{x}{d}),\tau_1=rect(\frac{x}{L})rect(\frac{y}{L})\]
+\[\tau=\frac{1}{2}+\frac{m}{2}\cos(2\pi \frac{x}{d}),\tau_1=\rect(\frac{x}{L})\rect(\frac{y}{L})\]
 这时
 \[T=\mathscr{F}[\tau_1]=\frac{1}{2}\delta(\eta)+\frac{m}{4}\delta(\eta-\frac{1}{d})+\frac{m}{4}\delta(\eta-\frac{1}{d})\]
-\[T_1=L^2sinc(L\eta)sinc(L\xi)\]
+\[T_1=L^2\sinc(L\eta)\sinc(L\xi)\]
 于是
-\[T'=T*T_1=sinc(L\xi)(\frac{L^2}{2}sinc(L\eta)+\frac{L^2m}{4}sinc(L(\eta+\frac{1}{d}))+\frac{L^2m}{4}sinc(L(\eta-\frac{1}{d})))\]
+\[T'=T*T_1=\sinc(L\xi)(\frac{L^2}{2}\sinc(L\eta)+\frac{L^2m}{4}\sinc(L(\eta+\frac{1}{d}))+\frac{L^2m}{4}sinc(L(\eta-\frac{1}{d})))\]
 继续假设光栅的空间频率足够的小，不同项之间的交叉项无意义，可以求出光强：
-\[I=\frac{L^4}{4z^2\lambda^2}sinc(\frac{Ly}{z\lambda})(sinc^2(\frac{Lx}{z\lambda})+\frac{m}{4}sinc^2(\frac{L(x+\frac{\lambda
+\[I=\frac{L^4}{4z^2\lambda^2}\sinc(\frac{Ly}{z\lambda})(\sinc^2(\frac{Lx}{z\lambda})+\frac{m}{4}\sinc^2(\frac{L(x+\frac{\lambda
       z}{d})}{z\lambda})+\frac{m}{4}sinc^2(\frac{L(x-\frac{z\lambda}{d})}{z\lambda}))\]
 \section{附录}
 正文从角谱理论出发构建了整个的衍射理论，附录中将会用传统的方法推导出衍
@@ -472,18 +481,86 @@ $\sin{\theta}=\frac{x}{z}$得到光栅方程为：
 \subsection{线性介质中光的传播}
 首先，光在介质中传播遵从麦克斯韦方程组：
 \begin{equation}
-\label{eq:11}
-\begin{array}{l}
-  \nabla \cdot \vec{E}=\frac{\rho}{\varepsilon_0\varepsilon_{r}}\\
-  \nabla \times \vec{E}=-\frac{\partial \vec{B}}{\partial t}\\
-  \nabla \cdot \vec{B}=0\\
-  \nabla \times \vec{B}=\mu_0\vec{\jmath}+\mu_0\varepsilon_0\varepsilon_r
-  \frac{\partial \vec{E}}{\partial t}
-\end{array}
+  \label{eq:11}
+  \begin{array}{l}
+    \nabla \cdot \vec{E}=\frac{\rho}{\varepsilon_0\varepsilon_{r}}\\
+    \nabla \times \vec{E}=-\frac{\partial \vec{B}}{\partial t}\\
+    \nabla \cdot \vec{B}=0\\
+    \nabla \times \vec{B}=\mu_0\vec{J}+\mu_0\varepsilon_0\varepsilon_r
+    \frac{\partial \vec{E}}{\partial t}
+  \end{array}
 \end{equation}
-在线性介质中没有电流，$\vec{\jmath}$
+这里$\mu_r$近似为1，在线性介质中没有电流，$\vec{J}$为零。将麦克斯韦方程组的第二个方程做变
+换得到：
+\[\nabla \times (\nabla \times \vec{E})=-\nabla\times \frac{\partial
+    \vec{B}}{\partial t}=-\frac{\partial \nabla \times
+    \vec{B}}{\partial t}\]
+带入最后一个方程得：
+\[\nabla\times(\nabla\times \vec{E})=-\mu_0\varepsilon_0\varepsilon_r
+  \frac{\partial^2\vec{E}}{\partial^2t}\]
+\[\Rightarrow \nabla(\nabla\cdot
+  \vec{E})-\nabla^2\vec{E}=-\frac{1}{c^2}\frac{\partial^2
+    \vec{E}}{\partial^2 t}\]
+介质中没有电荷，所以$\nabla\cdot \vec{E}=0$，于是得到波动方程：
+\[\frac{\partial^2\vec{E}}{\partial^2t}-c^2\nabla^2\vec{E}=0\]
+现在假设$\vec{E}$具有可分离变量的形式：
+\[\vec{E}=e^{-i\omega t}\vec{U}\]
+带入波动方程：
+\[\frac{\omega^2}{c^2}\vec{U}+\nabla^2\vec{U}=0\]
+令
+\[k^2=\frac{\omega^2}{c^2}=\frac{(2\pi)^2}{c^2T^2}=\frac{(2\pi)^2}{\lambda^2}\]
+于是可以得到亥姆霍兹方程:
+\begin{equation}
+  \label{eq:12}
+  (\nabla^2+k^2)\vec{U}=0
+\end{equation}
+在衍射过程中$\vec{U}$可以看成是一个标量，在这种近似在一般情况下都成立，
+于是描述光场的矢量可以用标量$U$来代替，于是并且满足方程\ref{eq:12}。
 \subsection{亥姆霍兹-基尔霍夫定理}
-
+现在假设一个满足亥姆霍兹方程的辅助函数$G$和一个区域内的光场分布$U$，考
+虑$S_1$和$S_2$两个曲面围成的区域里，这两个函数满足以下公式：
+\[\varoiint\limits_{S_1,S_2}G\nabla U-U\nabla G\dif \vec{S}= \iiint
+  \nabla G\nabla U+G\nabla^2 U-\nabla G\nabla U-U\nabla^2G\dif V\]
+带入条件亥姆霍兹方程$\nabla^2U=-k^2U$可以得：
+\[\varoiint\limits_{S_1}G \frac{\partial U}{\partial \vec{n}}-U
+  \frac{\partial G}{\partial \vec{n}}\dif
+  \vec{S}=-\varoiint\limits_{S_2}G \frac{\partial U}{\partial\vec{n}}-U
+  \frac{\partial G}{\partial\vec{n}}\dif \vec{S}\]
+将$S_2$取为包裹一个点$q$的一个小的球面,并且取
+$G=\frac{1}{r}e^{ikr}$,$r$是以$q$为原点的距离，带
+入方程中的右面一项得：
+\[-\varoiint\limits_{S_2}\frac{1}{r}e^{ikr}\frac{\partial U}{\partial
+    \vec{n}}-U(\frac{1}{r^2}e^{ikr}-ik \frac{1}{r}e^{ikr})\dif S\]
+在$r\rightarrow 0$时:
+\[\Rightarrow \frac{e^{ikr}}{r^2}U(q) \times 4\pi r^2+4\pi r
+  \varoiint\limits_{S_2}ike^{ikr}-e^{ikr}\frac{\partial U}{\partial
+    \vec{n}}\dif \vec{S}\]
+\[\Rightarrow 4\pi U(q)\]
+所以光强的公式为：
+\[U(q)=\frac{1}{4\pi}\varoiint\limits_{S_1}\frac{
+    e^{ikr}}{r^2}\frac{\partial U}{\partial\vec{n}}-U
+  \frac{\partial }{\partial \vec{n}}(\frac{e^{ikr}}{r})\dif
+  \vec{S}\]
+现在考虑一个小孔的衍射，这种衍射只在小孔上的光是考虑的其他的光影响可以
+忽略不计。假设是一个点光源发出的光，即:
+\[U=\frac{A}{R}e^{ikR}\]
+带入光场的公式得：
+\[U(q)=\frac{A}{4\pi}\iint\limits_{\Sigma}\frac{e^{ikr}}{r}\frac{e^{ikR}}{R}((ik-\frac{1}{R})\cos<\vec{R},\vec{n}>-(ik-\frac{1}{r})\cos<\vec{r},\vec{n}>)\dif
+  S\]
+考虑光源和$q$点都不太近的情况，$\frac{1}{R}$和$\frac{1}{r}$近似为零，
+于是公式可以写成：
+\[U(q)=\frac{A}{i\lambda}\iint\limits_{\Sigma}\frac{e^{ik(R+r)}}{Rr}\frac{\cos<\vec{r},\vec{n}>-\cos<\vec{R},\vec{n}>}{2}\dif
+  S\]
+下面将这一公式改写:
+\begin{equation}
+  \label{eq:13}
+U(q)=\frac{1}{i\lambda}\iint\limits_{\Sigma}UK(\theta,\theta
+')\frac{e^{ikr}}{r}\dif S
+\end{equation}
+其中,$K(\theta,\theta')$的定义如下：
+\[K(\theta,\theta')=\frac{\cos<\vec{r},\vec{n}>-\cos<\vec{R},\vec{n}>}{2}\]
+$\theta$为$\vec{r}$和$\vec{n}$的夹角，$\theta'$为$\vec{R}$和$\vec{n}$
+的夹角。这个公式称为惠更斯-菲涅尔原理。
 \end{document}
 %%% Local Variables:
 %%% mode: latex
