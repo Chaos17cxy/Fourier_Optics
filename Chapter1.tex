@@ -2,14 +2,11 @@
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage{float}
-\usepackage{pgfplots}
 \usepackage{ctex}
 \usepackage{amsmath}
 \usepackage{lmodern}
-\usepackage{tikz}
 \usepackage{xfrac}%\sfrac可以
 \usepackage{fancyhdr}
-\pgfplotsset{compat=1.17}
 \ctexset{today=old}
 \setlength{\headheight}{12.64723pt}%标题大小
 \pagenumbering{arabic}
@@ -32,11 +29,13 @@
 \newcommand{\f}[2]{\frac{#1}{#2}}%定义分数函数 更方便了
 \newcommand{\sfr}[2]{\sfrac{#1}{#2}}
 \newcommand{\sumsum}[3]{\sum_{#1=#2}^#3}
+%\newcommand{\jiaopu}{G(\frac{cos\alpha}{\lambda},\frac{cos\beta}{\lambda})=\dbinf g(x,y)e^{-j2\pi(\frac{cos\alpha}{\lambda}x+\frac{cos\beta}{\lambda}y)}dxdy}
 \newcommand{\dbinf}{\iint_{-\infty}^{\infty}}
 \date{\today}
 \begin{document}
 本人鄂西南吴彦祖，尝学\LaTeX，然纸上得来终觉浅，适逢信息光学此公式繁杂之课业，练手之作，还望诸位海涵。
-\maketitle%把上面的作者时间等做成title
+% \maketitle%把上面的作者时间等做成title
+%下面为格式学习title%把上面的作者时间等做成title
 %下面为格式学习
 \tableofcontents   %目录%此行在maketitle之上时出现目录
 \section{数学基础}%第一章(1)
@@ -134,10 +133,10 @@ n为整数
 \\对普通函数作等间距抽样
 \paragraph{二维脉冲序列}
 \[\sumsum{n}{-\infty}{\infty} \sumsum{m}{-\infty}{\infty}\delta{(x-na)}\delta{(y-nb)}=\f{1}{ab}comb(\f{x}{a})comb(\f{y}{b})\]
-%$\sqrt{x}$,$\sfrac{1}{2}$%\sfrac的效果是变成斜着的分式
-%\dfrac分式变成行间大小
-%\tfrac分式子变成行内大小
-%\cfrac[]{}{}繁分式
+%$\sqrt{x}$,$\sf{1}{2}$%\sf的效果是变成斜着的分式
+%\df分式变成行间大小
+%\tf分式子变成行内大小
+%\cf[]{}{}繁分式
 \subsection{傅里叶变换和卷积}%1.2
 \subsubsection{傅里叶变换}
 \[F(\xi,\eta)=\iint_{-\infty}^{\infty}f(x,y)e^{-j2\pi(\xi x+\eta y)}dxdy\]
@@ -280,6 +279,8 @@ F\{tri(x)\}=F\{rect(x)*rect(x)\}
 \section{线性系统}
 \subsection{系统与线性系统}
 \paragraph{系统}
+关于系统和线性系统的定义之类在往日课程中已有概念，此处不表。
+
 输入的函数即输入信号分布：$f(x,y)$(可以看作输入光强分布)
 
 系统响应即输出信号分布：$g(x,y)=L\{f(x,y)\}$(可以看作输出光强分布)
@@ -372,18 +373,139 @@ G(\xi,\eta)=F(\xi,\eta)H(\xi,\eta)
 $g(x,y)=L\{f(x,y)\}$
 \[f(x,y)=\dbinf F(\xi,\eta)e^{j2\pi(\xi x+\eta y)}d\xi d\eta
     \]
-\[g(x,y)=\dbinf F(\xi,\eta) L\{e^j2\pi(\xi x+\eta y)\}d\xi d\eta    
+\[g(x,y)=\dbinf F(\xi,\eta) L\{e^{j2\pi(\xi x+\eta y)}\}d\xi d\eta    
 \]\[=\dbinf F(\xi,\eta)H(\xi,\eta)e^{j2\pi(\xi x+\eta y)}d\xi d\eta
 (利用了卷积定理)
 \]
 其中$F$是输入的频域函数，$L$指的是系统对单个特定频率函数(由输入函数分解得到)的变换，
-$H$是指单个特定频率的函数(由输入函数分解得到)经过线性系统后的输入函数。
+$H$是指单个特定频率的函数(由输入函数分解得到)经过线性系统后的输出函数。
 
 
 \paragraph{本征函数}如果$L\{f(x,y)\}]=af(x,y)$成立，且a为复数(称为本征值)，则称$f(x,y)$
 是算符L的本征函数(和量子力学类似，只不过本征值是复数)
 
-由此我们可以看出，复指数函数显然是线性不变系统的本征函数。(通俗理解：因为它进去的时候是一个特定频率复指数函数，出来的时候同样是频率未发生改变的复指数函数)
-$L\{e^{j2\pi}\}$
+由此我们可以看出，复指数函数显然是线性不变系统的本征函数。(进去是复指数函数线性叠加(权重因子为$F$)，出来的术后有也是响应频率的线性叠加(权重因子为$FH$相乘)
+\[L\{e^j2\pi(\xi x+\eta y)\}=H(\xi,\eta)e^{j2\pi(\xi x+\eta y)}\]
+该式子的意义：L对一个特定频率的输入波变换，得到这个波的随频率的输出分布(见)和这个波本身(波的频率)
 
+\paragraph{非相干系统}对于非相干处理系统，系统对于光强是线性的，这种系统可以把实数值输入变换成一个实值输出。
+
+余弦函数是这类系统的本征函数。
+\[L\{cos2\pi(\xi x+\eta y)\}=A(\xi,\eta)cos[2\pi (\xi x+\eta y)-\varphi(\xi,\eta)]
+    \]
+该式子表示，对实值脉冲响应的线性不变系统，余弦输入讲产生同频率的余弦输出，但会产生衰减和位移。
+这种变化的大小分别决定于传递函数的模和辐角。
+\subsection{二维广场分析}满足以下条件时，可以应用标量衍射理论
+
+1.衍射孔径比波长大得多
+
+2.观察点离衍射孔径足够远
+
+\subsubsection{单色光波场}
+\paragraph{理想单色光} 不存在
+\paragraph{窄带光}仅仅包含以某频率为中心很窄的频率范围，即窄带光。
+\paragraph{单色光波场复振幅表示}单色光场中一点P在t时刻光振动表示为
+\[u(P,t)=a(P)cos[2\pi\mu t-\varPhi(P)]
+    \]
+式子中$\mu$是光波时间频率，a(P)和$\varphi (P)$分别是P点光振动的振幅和初相位
+
+
+根据欧拉公式有
+\[u(P,t)=Re\{
+    a(P)e^{\varphi(P)}e^{-j2\pi\mu t}\}
+    \]
+\paragraph{定义复振幅}\[
+    U(P)=a(P)e^{j\varphi(P)}\]
+包含P点光振动的振幅a(P)和初相位$\varphi(P)$
+
+对于单色光波，频率$\mu$恒定，相位因子$e^{-j2\pi\mu t}$与光场中各点位置无关。
+所以光场中光振动的空间分布完全由复振幅U(P)决定
+
+光强：\[I=U(P)U^{*}(P)=|U(P)|^2
+\]\[
+=I_{1}+I_{2}+2\sqrt{I_{1}I_{2}}cos[\varphi_{2}(P)-\varphi_{1}(P)]
+\]
+(最后一式是指两光束干涉得到的光强)
+
+\paragraph{球面波复振幅}
+设点光源初相为0，任一点P处的复振幅为
+发散波: \[
+    U(P)=\f{a_{0}}{r}e^{jkr}
+\]
+会聚波：\[
+    U(P)=\f{a_{0}}{r}e^{-jkr}    
+\]
+$a_{0}$是距光源单位距离处的振幅，$k=\f{2\pi}{\lambda}$是级数
+
+\subsubsection{平面复振幅}
+\paragraph{球面波复振幅}
+\paragraph{傍轴条件}\[
+    (x-x_{0})^2+(y-y_{0})^2<<z^2
+    \]
+    泰勒展开：\[
+        r\approx\f{(x-x_{0})^2}{2z}+\f{(y-y_{0})^2}{2z}+z\]
+所以，一个发散球面波在xy平面上产生的复振幅分布：
+\[
+    U(x,y)=\f{a_{0}}{r}e^{jkr}
+    \approx\f{a_{0}}{z}e^{jkz}e^{j\f{k}{2z}[(x-x_{0})^2+(y-y_{0})^2]}
+    \]
+含有常量相位因子$e^{jkz}$和球面波二次相位因子$e^{j\f{k}{2z}[(x-x_{0})^2+(y-y_{0})^2]}$，代表距离平面z处有一个坐标为$(x_{0},y_{0})$的点光源发出的球面波经过这个平面。
+\paragraph{平面波复振幅}
+\paragraph{此处是重点!!!}\[
+    U(x,y)=Ae^{jk(xcos\alpha+ycos\beta)}\]        
+平面波线性相位因子$e^{jk(xcos\alpha+ycos\beta)}$代表一个方向余弦为$(cos\alpha,cos\beta)$的平面波经过该平面。
+\subsection{平面波的空间频率}
+\paragraph{定义}\[U(x,y)=Ae^{j2\pi(\xi x+\eta y)}\]
+其中$cos\alpha=\f{\xi}{\lambda},cos\beta=\f{\eta}{\lambda}$,该式子
+代表一个传播方向余弦为$(cos\alpha,cos\beta)$,波长为$\lambda$的单色平面波
+
+类似地可以定义三维空间平面波(其中$\zeta=\f{cos\gamma}{\lambda}$)
+\[U(x,y,z)=Ae^{j2\pi(\xi x+\eta y+\zeta z)}
+\]
+有如下数学关系：
+\[cos^{2}\alpha+cos^{2}\beta+cos^{2}\zeta =1
+    \]
+    \[\xi^{2}+\eta^{2}+\gamma^{2}=\f{1}{\lambda}
+        \]
+    平面波沿传播方向的空间频率：$\f{1}{\lambda}$,光振动时间频率$f=\f{c}{\lambda}$
+
+    (注意二维和三维的规律)
+\subsection{复振幅空间分布的频谱}
+\paragraph{超级重点}单色光场复振幅傅里叶变换分解
+\[g(x,y)=\dbinf G(\xi,\eta)e^{j2\pi(\xi x+\eta y)}d\xi d\eta\]  
+物理意义：$g(x,y)$看作频率不同的复指数分量的线性叠加，权重为$G(\xi,\eta)d\xi d\eta$
+  
+而且我们已经知道$e^{j2\pi(\xi x+\eta y)}$代表特定传播方向的单色平面波，所以即$g(x,y)$可以看作不同方向传播的单色平面波的线性叠加
+  
+传播方向$cos\alpha=\f{\xi}{\lambda},cos\beta=\f{\eta}{\lambda}$
+
+相对振幅和常量相位取决于$G(\xi,\eta)$(通俗理解：代表不同频率的波的量(占总体的多少))
+  
+\paragraph{角谱}已知
+\[cos\alpha=\frac{\xi}{\lambda},cos\beta=\f{\eta}{\lambda}
+\]  
+带入$g(x,y)$进行代换有
+\[G(\f{cos\alpha}{\lambda},\f{cos\beta}{\lambda})=\dbinf g(x,y)e^{-j2\pi(\f{cos\alpha}{\lambda}x+\f{cos\beta}{\lambda}y)}dxdy
+    \]
+    称为x.y平面上复振幅分布的角谱。
+\paragraph{例题}
+已知一平面波的复振幅表达式为$U(x,y,z)=Ae^{j(2x-3y+4z)}$,试计算其波长以及沿着x，y，z方向的空间频率。
+
+解：已知\[U(x,y,z)=Ae^{j(k_{x}x+k_{y}y+k_{z}z)}=Ae^{j2\pi(\xi x+\eta y+\zeta z)}
+\]
+所以:$k_{x}=2,k_{y}=-3,k_{z}=4$
+\[k^2=k_{x}^2+k_{y}^2+k_{z}^2=29\]
+\[k=\sqrt{29}=\f{2\pi}{\lambda}\]
+\[\lambda=\f{2\pi}{\sqrt{29}}\]
+\[k_{x}=2=2\pi\xi,k_{y}=-3=2\pi\eta,k_{z}=4=2\pi\zeta\]
+综上，$\xi=\f{1}{\pi},\eta=\f{-3}{2\pi},\zeta=\f{-2}{\pi}$
+
+\paragraph{完结撒花！！！！！！！！！！！！！！！！！！！！！！！！！！！！！}
+
+\paragraph{}
+\[\diamondsuit\heartsuit\clubsuit\spadesuit\diamondsuit\heartsuit\clubsuit\spadesuit 
+\]
+\centerline{长期招收广告位}
+\[ \diamondsuit\heartsuit\clubsuit\spadesuit\diamondsuit\heartsuit\clubsuit\spadesuit 
+\]
 \end{document}
